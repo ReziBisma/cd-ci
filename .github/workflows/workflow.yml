@@ -1,34 +1,27 @@
 name: CI Pipeline
 
 on:
-push:
-branches: [ main ]
+  push:
+    branches: [ main ]
 
 jobs:
-lint-and-test:
-runs-on: ubuntu-latest
+  lint-and-test:
+    runs-on: ubuntu-latest
 
-```
-steps:
-  # Checkout repository
-  - name: Checkout code
-    uses: actions/checkout@v3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-  # Install Node.js
-  - name: Setup Node.js
-    uses: actions/setup-node@v3
-    with:
-      node-version: '18'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-  # Install dependencies
-  - name: Install dependencies
-    run: npm install
+      - name: Install dependencies
+        run: npm install
 
-  # LINT STEP (ESLint)
-  - name: Run ESLint
-    run: npx eslint .
+      - name: Run ESLint
+        run: npx eslint .
 
-  # UNIT TEST STEP (Jest)
-  - name: Run Tests
-    run: npm test
-```
+      - name: Run Tests
+        run: npm test
