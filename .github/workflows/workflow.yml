@@ -1,29 +1,34 @@
-:::writing{variant="standard" id="66291"}
 name: CI Pipeline
 
 on:
-  push:
-    branches: [ main ]
+push:
+branches: [ main ]
 
 jobs:
-  lint-and-test:
-    runs-on: ubuntu-latest
+lint-and-test:
+runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+```
+steps:
+  # Checkout repository
+  - name: Checkout code
+    uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+  # Install Node.js
+  - name: Setup Node.js
+    uses: actions/setup-node@v3
+    with:
+      node-version: '18'
 
-      - name: Install dependencies
-        run: npm install
+  # Install dependencies
+  - name: Install dependencies
+    run: npm install
 
-      - name: Run ESLint
-        run: npx eslint .
+  # LINT STEP (ESLint)
+  - name: Run ESLint
+    run: npx eslint .
 
-      - name: Run Tests
-        run: npm test
-:::
+  # UNIT TEST STEP (Jest)
+  - name: Run Tests
+    run: npm test
+```
