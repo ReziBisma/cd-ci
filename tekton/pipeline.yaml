@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: simple-pipeline
+spec:
+  tasks:
+    - name: build
+      taskSpec:
+        steps:
+          - name: build
+            image: ubuntu
+            script: echo "Building app"
